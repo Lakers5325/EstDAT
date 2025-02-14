@@ -15,6 +15,7 @@ typedef enum {
     ERROR_VERTEX   /* not valid vertex */   
 } Label;
 
+
 typedef struct _Vertex Vertex;
 
 struct _Vertex 
@@ -27,7 +28,7 @@ struct _Vertex
 /**
  * @brief Creates vertex and initializes its values.
  *
- * @author Izan Robles
+ * @author Izan Robles & Arturo Pérez
  *
  * @return Returns pointer to new vertex
  */
@@ -37,7 +38,7 @@ Vertex * vertex_init ();
  * @brief Creates vertex and initializes its values according to
  *        given description.
  *
- * @author Izan Robles
+ * @author Teacher @ UAM
  * 
  * @param descr Description of values to initialize new vertex
  *
@@ -48,7 +49,7 @@ Vertex *vertex_initFromString(char *descr);
 /**
  * @brief Frees all memory associated to given vertex
  *
- * @author Izan Robles
+ * @author Izan Robles & Arturo Pérez
  * 
  * @param v vertex pointer
  */
@@ -57,7 +58,7 @@ void vertex_free (void * v);
 /**
  * @brief Extracts id from given vertex
  *
- * @author Izan Robles
+ * @author Izan Robles & Arturo Pérez
  * 
  * @param v vertex pointer
  *
@@ -68,7 +69,7 @@ long vertex_getId (const Vertex * v);
 /**
  * @brief Extracts tag from given vertex
  *
- * @author Izan Robles
+ * @author Izan Robles & Arturo Pérez
  * 
  * @param v vertex pointer
  *
@@ -79,7 +80,7 @@ const char* vertex_getTag (const Vertex * v);
 /**
  * @brief Extracts state from given vertex
  *
- * @author Izan Robles
+ * @author Izan Robles & Arturo Pérez
  * 
  * @param v vertex pointer
  *
@@ -94,6 +95,7 @@ Label vertex_getState (const Vertex * v);
  *
  * @param v Vertex pointer
  * @param id New vertex id, must be equal or greater than 0
+ * @author Izan Robles & Arturo Pérez
  *
  * @return Returns OK or ERROR in case of error 
  */
@@ -105,6 +107,7 @@ Status vertex_setId (Vertex * v, const long id);
  *
  * @param v Vertex pointer
  * @param id New vertex tag, must fit in the Vertex
+ * @author Izan Robles & Arturo Pérez
  *
  * @return  Returns OK or ERROR in case of error.
  */
@@ -129,8 +132,11 @@ Status vertex_setState (Vertex * v, const Label state);
  * First it compares their ids. If they are equal, then compares
  * their tags.
  * 
- * @param v1,v2 Vertices to compare.
+ * @param v1 Vertices to compare.
+ * @param v2 
  *
+ * @author Izan Robles & Arturo Pérez
+ * 
  * @return It returns an integer less than or greater than zero if
  * id of v1 is found,  respectively, to be less than or be greater 
  * than id of v2. If their are equal, thenreturns the result of 
