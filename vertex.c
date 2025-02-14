@@ -64,26 +64,28 @@ Vertex *vertex_initFromString(char *descr){
 /*----------------------------------------------------------------------------------------*/
 Vertex *vertex_init()
 {
-	Vertex *main = NULL;
+	Vertex *v = NULL;
 
-	if (!(main = (Vertex *)malloc(sizeof(Vertex))))
+	if (!(v = (Vertex *)malloc(sizeof(Vertex))))
 	{
 		return NULL;
 	}
 
-	main->state = WHITE;
-	main->id = 0;
-	if (strlen(main->tag) > 2)
+	v->state = WHITE;
+	v->id = 0;
+
+	if (strlen(v->tag) > 0)
 	{
-		strcpy(main->tag, "\"\"");
+		v->tag[0] = '\0';
 	}
 	else
 	{
 		/*means length of tag in vertex is too low to initalize*/
+		vertex_free(v);
 		return NULL;
 	}
 
-	return main;
+	return v;
 }
 
 /*----------------------------------------------------------------------------------------*/
@@ -103,6 +105,12 @@ long vertex_getId(const Vertex *v)
 		return -1;
 	}
 	
+	if (v->id < 0)
+	{
+		free(v);
+		return -1;
+	}
+
 	return v->id;
 }
 
@@ -113,6 +121,12 @@ const char* vertex_getTag(const Vertex *v)
 	{
 		return NULL;
 	}
+
+	if (v->tag[0] == '\0')
+	{
+		
+	}
+	
 	
     return v->tag;  
 }
@@ -133,10 +147,48 @@ Status vertex_setId (Vertex * v, const long id)
 {
 	if (v == NULL || id < 0)
 	{
-		return NULL;
+		return ERROR;
 	}
 	
+	v->id = id;
+	return OK;
 }
 
+/*----------------------------------------------------------------------------------------*/
+Status vertex_setTag (Vertex * v, const char * tag)
+{
+	if (v == NULL || tag == NULL || strlen(v->tag < TAG_LENGTH))
+	{
+		return ERROR;
+	}
+	
+	strcpy(v->tag, tag);
 
+	return OK;
+}
+
+/*----------------------------------------------------------------------------------------*/
+Status vertex_setState (Vertex * v, const Label state)
+{
+	if (v == NULL || (state != ERROR_VERTEX && state != WHITE && state != BLACK))
+	{
+		return ERROR;
+	}
+
+	v->state = state;
+
+	return OK;
+}
+
+/*----------------------------------------------------------------------------------------*/
+int vertex_cmp (const void * v1, const void * v2)
+{
+	
+	if (v1 == NULL || v2 == NULL)
+	{
+		return 0;
+	}
+
+	
+}
 
